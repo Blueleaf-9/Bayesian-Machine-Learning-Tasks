@@ -1,0 +1,84 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+
+# Define the two-mode distribution as a mixture of two Gaussians
+def true_distribution(x):
+    return 0.6 * norm.pdf(x, loc=-1, scale=0.3) + 0.4 * norm.pdf(x, loc=1, scale=0.5)
+
+# Define the initial approximation as a normal distribution
+def init_approx(x):
+    return norm.pdf(x, loc=0, scale=1)
+
+
+# Define the KL divergences
+def forward_kl(p, q, x):
+    return np.sum(p(x) * np.log(p(x) / q(x)))
+
+def reverse_kl(p, q, x):
+    return forward_kl(q, p, x)
+
+
+# Define the x-axis
+x = np.linspace(-5, 5, 1000)
+
+# Set up the figure
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+plt.subplots_adjust(wspace=0.4)
+
+# Plot the true distribution
+ax1.plot(x, true_distribution(x), label='True Distribution')
+
+# Set up the plot for the forward KL divergence
+ax1.set_title('Forward KL Divergence')
+ax1.set_xlabel('x')
+ax1.set_ylabel('PDF')
+ax1.legend()
+
+# Plot the true distribution
+ax2.plot(x, true_distribution(x), label='True Distribution')
+
+# Set up the plot for the reverse KL divergence
+ax2.set_title('Reverse KL Divergence')
+ax2.set_xlabel('x')
+ax2.set_ylabel('PDF')
+ax2.legend()
+
+# Define the initial approximation
+p = init_approx
+
+# Define the learning rate and the number of iterations
+lr = 0.01
+num_iterations = 1000
+
+# Define arrays to store the KL divergences
+forward_kl_divergences = np.zeros(num_iterations)
+reverse_kl_divergences = np.zeros(num_iterations)
+
+# Initialize the plot for the forward KL divergence
+forward_line, = ax1.plot(x, p(x), label='Iteration 0')
+
+# Initialize the plot for the reverse KL divergence
+reverse_line, = ax2.plot(x, p(x), label='Iteration 0')
+
+# Perform gradient descent to minimize the forward KL divergence
+for i in range(num_iterations):
+    forward_kl_divergences[i] = forward_kl(true_distribution, p, x)
+    p_mean = np.sum(x * p(x)) / np.sum(p(x))
+    p_var = np.sum(p(x) * (x - p_mean) ** 2) / np.sum(p(x))
+    p = lambda x: norm.pdf(x, loc=p_mean, scale=np.sqrt(p_var))
+    forward_line.set_ydata(p(x))
+    forward_line.set_label('Iteration {}'.format(i+1))
+    fig.canvas.draw()
+    plt.pause(0.01)
+
+# Perform gradient descent to minimize the reverse KL divergence
+p = init_approx
+for i in range(num_iterations):
+    reverse_kl_divergences[i] = reverse_kl(true_distribution, p, x)
+    p_mean = np.sum(x * true_distribution(x)) / np.sum(p(x) * true_distribution(x))
+    p_var = np.sum(true_distribution(x) * (x - p_mean) ** 2) / np.sum(true_distribution(x))
+    p = lambda x: norm.pdf(x, loc=p_mean, scale=np.sqrt(p_var))
+    reverse_line.set_ydata(p(x))
+    reverse_line.set_label('Iteration {}'.format(i+1))
