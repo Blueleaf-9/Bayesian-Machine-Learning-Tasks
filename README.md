@@ -48,6 +48,63 @@ Random Forest: 0.88
 
 ## Task 4:
 
+Epoch 1/15
+5/5 [==============================] - 80s 14s/step - loss: 2.2301 - accuracy: 0.5061 - val_loss: 0.7430 - val_accuracy: 0.4639
+
+Epoch 2/15
+5/5 [==============================] - 73s 18s/step - loss: 0.6725 - accuracy: 0.5943 - val_loss: 0.6410 - val_accuracy: 0.6706
+
+Epoch 3/15
+5/5 [==============================] - 74s 13s/step - loss: 0.6376 - accuracy: 0.6397 - val_loss: 0.7016 - val_accuracy: 0.5088
+
+Epoch 4/15
+5/5 [==============================] - 69s 12s/step - loss: 0.6184 - accuracy: 0.6524 - val_loss: 0.5924 - val_accuracy: 0.7076
+
+Epoch 5/15
+5/5 [==============================] - 72s 14s/step - loss: 0.5906 - accuracy: 0.7114 - val_loss: 0.6010 - val_accuracy: 0.7115
+
+Epoch 6/15
+5/5 [==============================] - 68s 12s/step - loss: 0.5692 - accuracy: 0.7162 - val_loss: 0.5921 - val_accuracy: 0.7232
+
+Epoch 7/15
+5/5 [==============================] - 74s 18s/step - loss: 0.6704 - accuracy: 0.6655 - val_loss: 0.5617 - val_accuracy: 0.7446
+
+Epoch 8/15
+5/5 [==============================] - 73s 13s/step - loss: 0.6415 - accuracy: 0.6070 - val_loss: 0.5862 - val_accuracy: 0.7368
+
+Epoch 9/15
+5/5 [==============================] - 75s 13s/step - loss: 0.6108 - accuracy: 0.6821 - val_loss: 0.9113 - val_accuracy: 0.5088
+
+Epoch 10/15
+5/5 [==============================] - 67s 17s/step - loss: 0.6927 - accuracy: 0.5758 - val_loss: 0.6228 - val_accuracy: 0.6511
+
+Epoch 11/15
+5/5 [==============================] - 74s 13s/step - loss: 0.6025 - accuracy: 0.7089 - val_loss: 0.5970 - val_accuracy: 0.7329
+
+Epoch 12/15
+5/5 [==============================] - 71s 13s/step - loss: 0.6049 - accuracy: 0.6914 - val_loss: 0.5808 - val_accuracy: 0.7251
+
+Epoch 13/15
+5/5 [==============================] - 67s 12s/step - loss: 0.5688 - accuracy: 0.7157 - val_loss: 0.6965 - val_accuracy: 0.6277
+
+Epoch 14/15
+5/5 [==============================] - 68s 12s/step - loss: 0.5531 - accuracy: 0.7226 - val_loss: 0.5514 - val_accuracy: 0.7583
+
+Epoch 15/15
+5/5 [==============================] - 68s 17s/step - loss: 0.5354 - accuracy: 0.7367 - val_loss: 0.6476 - val_accuracy: 0.7037
+
+Highest Validation Accuracy for 15 interations:
+75.83
+
+As the number of iteratons increase the acccuracy will increase.
+
+
+For 15 interation the curve is as shown below:
+
+
+![image](https://user-images.githubusercontent.com/77116750/222973509-40689988-1f7e-4cff-8734-6ba9b5124040.png)
+
+
 ## Task 5:
 Refer to Task 5 file
 
