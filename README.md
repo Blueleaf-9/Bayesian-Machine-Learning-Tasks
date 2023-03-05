@@ -109,6 +109,8 @@ Therefore, the probability distribution of the coin that we picked up is a beta 
 Refer to Task 7 file for Code(part b)
 
 Output of (b)
+
+
 sample: 100%|██████████| 3000/3000 [00:08<00:00, 338.94it/s, 3 steps of size 9.78e-01. acc. prob=0.94] 
 sample: 100%|██████████| 3000/3000 [00:03<00:00, 844.63it/s, 1 steps of size 8.65e-01. acc. prob=0.94] 
 sample: 100%|██████████| 3000/3000 [00:03<00:00, 835.32it/s, 3 steps of size 8.68e-01. acc. prob=0.95] 
