@@ -1,0 +1,48 @@
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import cross_val_score
+
+# Load the data
+df = pd.read_excel("openaq.xlsx")
+
+# Convert the "Last Updated" column to a pandas DatetimeIndex
+df["Last Updated"] = pd.to_datetime(df["Last Updated"])
+
+# Drop the coordinates column
+df.drop(columns=["Coordinates"], inplace=True)
+
+# Drop the coordinates column
+df.drop(columns=["Unit"], inplace=True)
+
+# Set the DatetimeIndex as the index of the dataframe
+df.set_index("Last Updated", inplace=True)
+
+# Fill missing values with the mean of the respective columns
+df.fillna(df.mean(), inplace=True)
+
+# One-hot encode the categorical variables
+categorical_columns = ["Country Code", "City", "Location", "Pollutant", "Source Name", "Country Label"]
+
+df_encoded = pd.get_dummies(df, columns=categorical_columns)
+
+# Split the data into features and target variable
+X = df_encoded.drop(columns=["Value"])
+y = df_encoded["Value"]
+
+
+# Define models
+rf = RandomForestRegressor()
+
+# Perform k-fold cross-validation and collect results
+results = {}
+for model_name, model in zip(['Random Forest'], [rf]):
+    try:
+      scores = cross_val_score(model, X, y, cv=5, scoring='r2')
+      results[model_name] = scores.mean()
+    except Exception as e:
+        results[model_name] = 'Error: ' + str(e)
+
+# Print results
+print('Results:')
+for model_name, score in results.items():
+    print(f'{model_name}: {score:.2f}')
