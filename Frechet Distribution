@@ -1,0 +1,28 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import kde
+
+def frechet_samples(n, alpha, beta):
+    u = np.random.uniform(size=n)
+    x = alpha * (-np.log(u))**(-1/beta)
+    return x
+
+# Generate Fréchet samples
+alpha = 1.0
+beta = 2.0
+n = 10000
+x = frechet_samples(n, alpha, beta)
+
+# Plot kernel density estimation
+density = kde.gaussian_kde(x)
+xs = np.linspace(0, 10, 200)
+plt.plot(xs, density(xs), label='KDE')
+
+# Plot true PDF
+pdf = beta/alpha * (xs/alpha)**(-beta-1) * np.exp(-(xs/alpha)**(-beta))
+plt.plot(xs, pdf, label='PDF')
+
+plt.xlabel('x')
+plt.ylabel('Density')
+plt.legend()
+plt.show()
