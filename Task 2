@@ -1,0 +1,45 @@
+import numpy as np
+
+def cross_entropy(p, q):
+    """
+    Computes the cross-entropy between two probability distributions p and q.
+    """
+    ce = -np.sum(p * np.log(q))
+    return ce
+
+def entropy(p):
+    """
+    Computes the entropy of a probability distribution p.
+    """
+    e = -np.sum(p * np.log(p))
+    return e
+
+def mutual_information(p_xy):
+    """
+    Computes the mutual information between two random variables X and Y
+    whose joint probability distribution is given by p_xy.
+    """
+    p_x = np.sum(p_xy, axis=1)
+    p_y = np.sum(p_xy, axis=0)
+    p_x_given_y = p_xy / p_y
+    p_y_given_x = p_xy / p_x[:, np.newaxis]
+    mi = np.sum(p_xy * np.log(p_xy / (p_x_given_y * p_y_given_x)))
+    return mi
+
+def conditional_entropy(p_xy):
+    """
+    Computes the conditional entropy of a random variable X given another
+    random variable Y whose joint probability distribution is given by p_xy.
+    """
+    p_y = np.sum(p_xy, axis=0)
+    p_x_given_y = p_xy / p_y
+    ce = -np.sum(p_xy * np.log(p_x_given_y))
+    return ce
+
+def kl_divergence(p, q):
+    """
+    Computes the KL divergence from probability distribution p to
+    probability distribution q.
+    """
+    kl = np.sum(p * np.log(p / q))
+    return kl
