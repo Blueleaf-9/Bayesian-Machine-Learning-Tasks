@@ -101,6 +101,8 @@ As the number of iteratons increase the acccuracy will increase.
 
 For 15 interation the curve is as shown below:
 
+![image](https://user-images.githubusercontent.com/77116750/222973686-1c09d6d5-9396-4ac0-90b8-b44711861e32.png)
+
 
 ![image](https://user-images.githubusercontent.com/77116750/222973509-40689988-1f7e-4cff-8734-6ba9b5124040.png)
 
